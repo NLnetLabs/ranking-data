@@ -44,15 +44,12 @@ informative:
 --- abstract
 
 This document obsoletes {{Section 5.4.1 (Ranking data) of !RFC2181}},
-and specifies how to handle DNS data.
+and specifies directions whereby the source of the data determines for what purposes it may be used.
 
 --- middle
 
 Introduction {#introduction}
 =====
-
-This document obsoletes {{Section 5.4.1 (Ranking data) of !RFC2181}},
-and specifies how to handle DNS data.
 
 The DNS server assumed in {{Section 5.4.1 (Ranking data) of !RFC2181}} is considered to
 be a model with a shared database described in {{Section 2.2 (Common configurations) of !RFC1035}} that
@@ -60,9 +57,10 @@ has both Authoritative server and Recursive Resolver functions.
 It is assumed that information obtained from zone files, zone transfers,
 and name resolution will be mixed together.
 
-However, zone transfers transfer the same data from primaries to
-secondary servers without any modification. It is wrong for a function
-acting as an authoritative server to mix and return information
+However, at the time of writing, this is no longer the practice of name servers and resolvers.
+Zone transfers transfer the same data from primaries to
+secondary servers without any modification.
+An authoritative name server function does not mix and return information
 obtained from name resolution.
 
 
@@ -78,19 +76,8 @@ DNS Terminology {{!RFC9499}}.
 Problem Statement
 =================
 
-The DNS server assumed in {{Section 5.4.1 (Ranking data) of !RFC2181}} is considered to
-be a model with a shared database described in {{Section 2.2 (Common configurations) of !RFC1035}} that
-has both Authoritative server and Recursive Resolver functions.
-It is assumed that information obtained from zone files, zone transfers,
-and name resolution will be mixed together.
-
-However, zone transfers copy the same data from primaries to
-secondary servers without any modification. It is wrong for a function
-acting as an authoritative server to mix and return information
-obtained from name resolution.
-
-In the past, recursive resolvers would return delegation information
-or glue during name resolution;
+In the past, recursive resolvers would return data from referral responses, such
+as delegation information or glue, in the answer section of responses;
 however, modern recursive resolvers complete name resolution
 with an authoritative response from an authoritative server
 that has authority through delegation.
@@ -106,26 +93,27 @@ authoritative name resolution results (NXDOMAIN, NODATA, the RRSet requested),
 non-authoritative delegation information,
 unnecessary data, and other types of errors,
 and each of these is considered to affect how resolvers handle the data.
-Therefore, recommendations on how to handle the data are needed.
+Therefore, directions on how to handle the data are needed.
 
+Directions
 =================
 
-R1. Authoritative servers MUST NOT merge zone data. (zone data should be
+1. Authoritative servers MUST NOT merge zone data. (zone data should be
   retrieved from a source (zone file, internal database, zone
   transfer)
 
-R2. Name resolution results (Answer section, or NXDOMAIN, NODATA)
+2. Name resolution results (Answer section, or NXDOMAIN, NODATA)
   MUST be authoritative responses from authoritative servers
   that has authority through delegation.
 
-R3. Non-authoritative responses (referral/delegation responses) from
+3. Non-authoritative responses (referral/delegation responses) from
   authoritative servers MUST only be used to query the delegated
   authoritative server during the name resolution.
 
 Additional Considerations
 =================
 
-\[ Further recommendations could be made,
+\[ Further directions could be made,
 they may be DNS software implementation guidelines,
 which would be large in scale,
 so it is necessary to consider whether to proceed with them. \]
@@ -146,14 +134,15 @@ so it is necessary to consider whether to proceed with them. \]
 
 *  Full-service resolvers SHOULD only accept the following data
    from authoritative servers:
-   NS and DS RRSets (+RRSIG) in the Authority Section
-    of the delegation response and Glue A/AAAA in the Additional Section,
-   SOA RRs (+RRSIG) in the Authority Section
-    of authoritative NXDOMAIN and NODATA responses in response to the query,
-   the Answer Section (+RRSIG) of the authoritative response
-    in response to the query,
-   and any additional sections allowed by type (delegated domain name),
-   and SHOULD not accept any other information as suspicious.
+   - NS and DS RRSets (+RRSIG) in the Authority Section
+     of the delegation response and Glue A/AAAA in the Additional Section,
+   - SOA RRs (+RRSIG) in the Authority Section
+     of authoritative NXDOMAIN and NODATA responses in response to the query,
+   - the Answer Section (+RRSIG) of the authoritative response
+     in response to the query, and
+   - any additional sections allowed by type (delegated domain name),
+   
+   and SHOULD not accept any other information.
 
 IANA Considerations {#iana}
 ====================

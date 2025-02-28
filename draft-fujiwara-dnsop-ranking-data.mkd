@@ -44,7 +44,7 @@ informative:
 --- abstract
 
 This document obsoletes {{Section 5.4.1 (Ranking data) of !RFC2181}},
-and specifies directions whereby the source of the data determines for what purposes it may be used.
+and specifies directives whereby the source of the data determines for what purposes it may be used.
 
 --- middle
 
@@ -93,9 +93,9 @@ authoritative name resolution results (NXDOMAIN, NODATA, the RRSet requested),
 non-authoritative delegation information,
 unnecessary data, and other types of errors,
 and each of these is considered to affect how resolvers handle the data.
-Therefore, directions on how to handle the data are needed.
+Therefore, directives on how to handle the data are needed.
 
-Directions
+Directives
 =================
 
 1. Authoritative servers MUST NOT merge zone data. (zone data should be
@@ -113,7 +113,7 @@ Directions
 Additional Considerations
 =================
 
-\[ Further directions could be made,
+\[ Further directives could be made,
 they may be DNS software implementation guidelines,
 which would be large in scale,
 so it is necessary to consider whether to proceed with them. \]

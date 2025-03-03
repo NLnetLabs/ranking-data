@@ -43,7 +43,7 @@ informative:
 
 --- abstract
 
-This document obsoletes {{Section 5.4.1 (Ranking data) of !RFC2181}},
+This document obsoletes Section 5.4.1 (Ranking data) of RFC 2181,
 and specifies directives whereby the source of the data determines for what purposes it may be used.
 
 --- middle

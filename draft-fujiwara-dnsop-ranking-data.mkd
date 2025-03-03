@@ -110,7 +110,7 @@ Directives
   authoritative servers MUST only be used to query the delegated
   authoritative server during the name resolution.
 
-R4. Names and IP addresses of the authoritative name servers for zones (such as the root zone) that are built-in or loaded from "hints" files, MUST only be used for priming a resolver for those zones {{!RFC9609}}.
+4. Names and IP addresses of the authoritative name servers for zones (such as the root zone) that are built-in or loaded from "hints" files, MUST only be used for priming a resolver for those zones {{!RFC9609}}.
 
 Additional Considerations
 =================

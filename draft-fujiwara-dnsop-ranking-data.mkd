@@ -43,7 +43,7 @@ informative:
 
 --- abstract
 
-This document obsoletes {{Section 5.4.1 (Ranking data) of !RFC2181}},
+This document obsoletes Section 5.4.1 (Ranking data) of RFC 2181,
 and specifies directives whereby the source of the data determines for what purposes it may be used.
 
 --- middle
@@ -121,7 +121,7 @@ which would be large in scale,
 so it is necessary to consider whether to proceed with them. \]
 
 * If a DNS server plays different roles for different namespaces
-  (authoritative server, recursive resolver, forwarder), it MUST not
+  (authoritative server, recursive resolver, forwarder), it MUST NOT
    merge DNS data for each role.
 
   For example, a recursive resolver that returns a fixed zone
@@ -144,7 +144,7 @@ so it is necessary to consider whether to proceed with them. \]
      in response to the query, and
    - any additional sections allowed by type (delegated domain name),
    
-   and SHOULD not accept any other information.
+   and SHOULD NOT accept any other information.
 
 IANA Considerations {#iana}
 ====================

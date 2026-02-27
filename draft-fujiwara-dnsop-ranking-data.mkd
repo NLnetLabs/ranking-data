@@ -112,6 +112,14 @@ Directives
 
 4. Names and IP addresses of the authoritative name servers for zones (such as the root zone) that are built-in or loaded from "hints" files, MUST only be used for priming a resolver for those zones {{!RFC9609}}.
 
+5. Multi-function name server
+
+   Name servers with multiple functions will act as
+   an Authoritative, Recursive Resolver (Full-Service Resolver),
+   or Forwarder depending on the namespace to which the query name belongs,
+   the server IP address, the "Recursion Desired" bit, etc.
+   The data handled by each function MUST be separated.
+
 Additional Considerations
 =================
 

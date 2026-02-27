@@ -88,6 +88,18 @@ Attacks using responses that do not correspond to queries
 and additional data that is not required have been considered and reported,
 so unnecessary data should be discarded.
 
+{{!RFC1034}} already describes resolver's answer as follows.
+
+"The ideal answer is one from a server authoritative for the query which
+either gives the required data or a name error.  The data is passed back
+to the user and entered in the cache for future use if its TTL is
+greater than zero." (Quoted from RFC 1034, Section 5.3.3)
+
+"The simplest mode for the client is recursive,
+since in this mode the name server acts in the role of a resolver
+and returns either an error or the answer, but never referrals."
+(Quoted from RFC 1034, Section 4.3.1)
+
 Currently, responses from authoritative servers are considered to include
 authoritative name resolution results (NXDOMAIN, NODATA, the RRSet requested),
 non-authoritative delegation information,

@@ -1,7 +1,7 @@
 ---
 title: Clarifications to the DNS Ranking Data
 abbrev: ranking
-docname: draft-fujiwara-dnsop-ranking-data-00
+docname: draft-fujiwara-dnsop-ranking-data-01
 
 stand_alone: true
 

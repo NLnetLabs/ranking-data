@@ -11,7 +11,7 @@ kw: Internet-Draft
 cat: std
 consensus: true
 stream: IETF
-updates: 2181
+updates: 2181 5452 9499
 
 pi:
   toc: yes
@@ -51,8 +51,8 @@ and specifies directives whereby the source of the data determines for what purp
 Introduction {#introduction}
 =====
 
-The DNS server assumed in {{Section 5.4.1 (Ranking data) of !RFC2181}} is considered to
-be a model with a shared database described in {{Section 2.2 (Common configurations) of !RFC1035}} that
+The DNS server assumed in {{Section 5.4.1 (Ranking data) of !RFC2181}} is considered to support
+all of the diagrammed models described in {{Section 2.2 (Common configurations) of !RFC1035}} that
 has both Authoritative server and Recursive Resolver functions.
 It is assumed that information obtained from zone files, zone transfers,
 and name resolution will be mixed together.
@@ -62,8 +62,6 @@ Zone transfers transfer the same data from primaries to
 secondary servers without any modification.
 An authoritative name server function does not mix and return information
 obtained from name resolution.
-
-
 
 Terminology {#terminology}
 =========
@@ -110,13 +108,19 @@ Therefore, directives on how to handle the data are needed.
 Directives
 =================
 
-1. Authoritative servers MUST NOT merge zone data. (zone data should be
+1. Authoritative servers MUST NOT change zone data. (zone data should be
   retrieved from a source (zone file, internal database, zone
-  transfer)
+  transfer, DNS update)
+
+  Older implementations sometimes used information from a different zone
+  as a sibling glue, or used the result of name resolution.
 
 2. Name resolution results (Answer section, or NXDOMAIN, NODATA)
   MUST be authoritative responses from authoritative servers
   that has authority through delegation.
+
+  Responses generated according to {{!RFC8020}} and {{!RFC8198}}
+  rely on cached authoritative responses from authoritative servers.
 
 3. Non-authoritative responses (referral/delegation responses) from
   authoritative servers MUST only be used to query the delegated
@@ -132,7 +136,7 @@ Directives
    the server IP address, the "Recursion Desired" bit, etc.
    The data handled by each function MUST be separated.
 
-Additional Considerations
+Candidate Directives
 =================
 
 \[ Further directives could be made,
@@ -165,6 +169,41 @@ so it is necessary to consider whether to proceed with them. \]
    - any additional sections allowed by type (delegated domain name),
    
    and SHOULD NOT accept any other information.
+
+Update to RFCs
+==============
+
+Update to RFC 2181
+-------------
+
+  This document obsoletes Section 5.4.1 (Ranking data) of {{RFC2181}}.
+
+Update to RFC 9499
+-------------
+  
+  In RFC 9499, Section 7, the second paragraph defining 'Glue Records'
+  references RFC 2181 Section 5.4.1 ('Ranking Data').
+  Since this document obsoletes Section 5.4.1 of RFC 2181,
+  remove the paragraph.
+
+Update to RFC 5452
+--------
+
+  Section 9.1 of {{!RFC5452}} ("Query Matching Rules") describes
+  DNS response packet inspection,
+  noting that it occurs "before applying DNS trustworthiness rules
+  (see Section 5.4.1 of [RFC2181])".
+  As this document obsoletes Section 5.4.1 of [RFC2181],
+  the relevant text is revised to read as follows:"
+
+OLD
+
+| before applying DNS trustworthiness rules (see Section 5.4.1 of [RFC2181]).
+
+NEW
+
+| before applying DNS resolver algorithm (see Section 7.3 of {{RFC1035}}
+| and {{I-D.fujiwara-dnsop-ranking-data}}).
 
 IANA Considerations {#iana}
 ====================

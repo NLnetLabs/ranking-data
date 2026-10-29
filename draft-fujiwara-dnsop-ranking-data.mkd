@@ -160,9 +160,10 @@ so it is necessary to consider whether to proceed with them. \]
 
 *  Full-service resolvers SHOULD only accept the following data
    from authoritative servers:
-   - NS and DS RRSets (+RRSIG) in the Authority Section
-     of the delegation response and Glue A/AAAA in the Additional Section,
-   - SOA RRs (+RRSIG) in the Authority Section
+   - NS and DS RRSets (+RRSIG), and NSEC and NSEC3 RRs (+RRSIG)
+     in the Authority Section of the delegation response
+     and Glue A/AAAA in the Additional Section,
+   - SOA, NSEC and NSEC3 RRs(+RRSIG) in the Authority Section
      of authoritative NXDOMAIN and NODATA responses in response to the query,
    - the Answer Section (+RRSIG) of the authoritative response
      in response to the query, and

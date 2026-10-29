@@ -203,7 +203,7 @@ OLD
 NEW
 
 > before applying DNS resolver algorithm (see {{Section 7.3 of RFC1035@!STD13}}
-> and {{?I-D.draft-fujiwara-dnsop-ranking-data}}).
+> and {{!I-D.draft-fujiwara-dnsop-ranking-data}}).
 
 IANA Considerations {#iana}
 ====================
